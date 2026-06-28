@@ -152,6 +152,9 @@ app.use("/", userRouter);
 
 //-----------------error handling middlewares------------
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 //sending not found error when code doesnot match with defined paths
 
 app.all("*splat", (req, res, next) => {
