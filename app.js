@@ -71,7 +71,7 @@ store.on("error",(err)=>{
 })
 //local session express
 const sessionOptions = {
-    // store:store,
+    store:store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
@@ -157,7 +157,7 @@ app.get("/", (req, res) => {
 });
 //sending not found error when code doesnot match with defined paths
 
-app.all("*splat", (req, res, next) => {
+app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found:("))
 })
 
@@ -171,7 +171,7 @@ app.use((err, req, res, next) => {
 })
 
 //server
-let port = 8080;
-app.listen(port, () => {
-    console.log("server is listening to port ", port);
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log("server is listening to port ", PORT);
 })
