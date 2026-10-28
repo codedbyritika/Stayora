@@ -157,7 +157,7 @@ app.get("/", (req, res) => {
 });
 //sending not found error when code doesnot match with defined paths
 
-app.all("*", (req, res, next) => {
+app.all("/{*splat}", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found:("))
 })
 
